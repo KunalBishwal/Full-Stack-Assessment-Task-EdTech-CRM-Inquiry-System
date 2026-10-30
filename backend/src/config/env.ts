@@ -23,7 +23,7 @@ const parsedEnv = envSchema.safeParse(process.env);
 
 if (!parsedEnv.success) {
   console.error('❌ Invalid backend environment configuration:', parsedEnv.error.flatten().fieldErrors);
-  process.exit(1);
+  throw new Error(`Invalid environment configuration: ${JSON.stringify(parsedEnv.error.flatten().fieldErrors)}`);
 }
 
 export const env = parsedEnv.data;
