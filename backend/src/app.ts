@@ -47,6 +47,18 @@ export function createApp() {
   // General API rate limit
   app.use('/api', generalApiLimiter);
 
+  // Root health & status indicator
+  app.get('/', (_req, res) => {
+    res.status(200).json({
+      success: true,
+      service: 'k12-hunar-backend',
+      message: 'K12 Hunar EdTech CRM API is operational',
+      version: '1.0.0',
+      apiBase: '/api',
+      health: '/api/health',
+    });
+  });
+
   // Mount API routes
   app.use('/api', apiRouter);
 
