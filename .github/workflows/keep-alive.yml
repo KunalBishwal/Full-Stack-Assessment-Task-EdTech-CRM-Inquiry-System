@@ -1,0 +1,22 @@
+name: Keep-Alive Cron (Render & Supabase)
+
+on:
+  schedule:
+    # Runs every 10 minutes (UTC) to prevent Render & Supabase cold starts
+    - cron: '*/10 * * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  keep-alive:
+    name: Ping Backend & Database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render Backend Health Endpoint & Supabase
+        run: |
+          echo "Pinging backend health endpoint..."
+          curl -s -f -m 30 "https://k12-hunar-backend-487b.onrender.com/api/health" || true
+
+      - name: Ping Vercel Frontend
+        run: |
+          echo "Pinging frontend..."
+          curl -s -f -m 30 "https://full-stack-assessment-task-ed-tech.vercel.app" || true
