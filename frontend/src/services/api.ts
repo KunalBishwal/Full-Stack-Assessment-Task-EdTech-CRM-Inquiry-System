@@ -15,16 +15,12 @@ export const tokenStorage = {
   set(token: string): void {
     try {
       window.sessionStorage.setItem(TOKEN_STORAGE_KEY, token);
-    } catch {
-      // Ignore storage errors in restricted contexts
-    }
+    } catch {}
   },
   clear(): void {
     try {
       window.sessionStorage.removeItem(TOKEN_STORAGE_KEY);
-    } catch {
-      // Ignore storage errors
-    }
+    } catch {}
   },
 };
 

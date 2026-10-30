@@ -43,7 +43,6 @@ export const InquiryDetailModal: React.FC<InquiryDetailModalProps> = ({
         aria-labelledby="drawer-inquiry-title"
       >
         <div>
-          {/* Header */}
           <div className="px-6 py-5 border-b border-canvas-border flex items-start justify-between gap-4 sticky top-0 bg-white z-10">
             <div>
               <div className="flex items-center gap-2.5">
@@ -75,9 +74,7 @@ export const InquiryDetailModal: React.FC<InquiryDetailModalProps> = ({
             </button>
           </div>
 
-          {/* Body */}
           <div className="p-6 space-y-6">
-            {/* User Type & Category */}
             <div className="grid grid-cols-2 gap-4 p-4 rounded-md bg-canvas-subtle border border-canvas-border">
               <div>
                 <span className="block text-xs font-medium text-ink-muted">User Type</span>
@@ -93,7 +90,6 @@ export const InquiryDetailModal: React.FC<InquiryDetailModalProps> = ({
               </div>
             </div>
 
-            {/* Contact Details */}
             <div className="space-y-2.5">
               <h3 className="text-xs font-semibold text-ink-secondary">Contact Information</h3>
               <div className="border border-canvas-border rounded-md divide-y divide-canvas-border text-sm">
@@ -148,7 +144,6 @@ export const InquiryDetailModal: React.FC<InquiryDetailModalProps> = ({
               </div>
             </div>
 
-            {/* Message */}
             <div className="space-y-2">
               <h3 className="text-xs font-semibold text-ink-secondary">Message / Query</h3>
               <div className="p-4 rounded-md border border-canvas-border bg-canvas/50 text-sm text-ink leading-relaxed whitespace-pre-wrap">
@@ -156,7 +151,6 @@ export const InquiryDetailModal: React.FC<InquiryDetailModalProps> = ({
               </div>
             </div>
 
-            {/* Status Update */}
             <div className="space-y-3 pt-2 border-t border-canvas-border">
               <div className="flex items-center justify-between">
                 <h3 className="text-xs font-semibold text-ink-secondary">Update Inquiry Status</h3>
@@ -199,7 +193,6 @@ export const InquiryDetailModal: React.FC<InquiryDetailModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
         <div className="px-6 py-4 border-t border-canvas-border bg-canvas-subtle flex items-center justify-end">
           <button
             type="button"

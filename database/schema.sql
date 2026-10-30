@@ -1,14 +1,5 @@
--- =============================================================================
--- K12 Hunar – EdTech CRM & Inquiry Management System
--- PostgreSQL Schema (Supabase PostgreSQL Compatible)
--- =============================================================================
-
--- Enable UUID generation extension if not already enabled
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- =============================================================================
--- 1. Domain Check Constraints / Custom Types
--- =============================================================================
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'inquiry_user_type') THEN
@@ -24,11 +15,6 @@ BEGIN
     END IF;
 END$$;
 
--- =============================================================================
--- 2. Table: admins
--- Stores authenticated CRM administrators. Passwords are stored exclusively
--- as bcrypt hashes; provisioning is handled via CLI script (no public signup).
--- =============================================================================
 CREATE TABLE IF NOT EXISTS admins (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -39,10 +25,6 @@ CREATE TABLE IF NOT EXISTS admins (
 
 CREATE INDEX IF NOT EXISTS idx_admins_email ON admins (LOWER(email));
 
--- =============================================================================
--- 3. Table: inquiries
--- Stores public inquiries submitted by parents, students, and partner schools.
--- =============================================================================
 CREATE TABLE IF NOT EXISTS inquiries (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(150) NOT NULL,
@@ -56,7 +38,6 @@ CREATE TABLE IF NOT EXISTS inquiries (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- Indexes for fast CRM search, filtering, and chronological pagination
 CREATE INDEX IF NOT EXISTS idx_inquiries_created_at ON inquiries (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_inquiries_status ON inquiries (status);
 CREATE INDEX IF NOT EXISTS idx_inquiries_category ON inquiries (category);
@@ -64,9 +45,6 @@ CREATE INDEX IF NOT EXISTS idx_inquiries_user_type ON inquiries (user_type);
 CREATE INDEX IF NOT EXISTS idx_inquiries_name_lower ON inquiries (LOWER(name));
 CREATE INDEX IF NOT EXISTS idx_inquiries_phone ON inquiries (phone);
 
--- =============================================================================
--- 4. Automatic updated_at Trigger
--- =============================================================================
 CREATE OR REPLACE FUNCTION update_inquiries_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN

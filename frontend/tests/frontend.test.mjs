@@ -3,7 +3,6 @@ import assert from 'node:assert/strict';
 import { z } from 'zod';
 
 describe('K12 Hunar Frontend Core Logic & Contracts Test Suite', () => {
-  // Test the client-side validation schema matches backend validation rules
   const USER_TYPES = ['Parent', 'Student', 'School'];
   const CATEGORIES = ['Scholarship', 'Concert', 'Admission', 'General Query'];
 
@@ -62,12 +61,12 @@ describe('K12 Hunar Frontend Core Logic & Contracts Test Suite', () => {
 
   test('2. Incomplete inquiry payload fails validation with appropriate errors', () => {
     const invalid = {
-      name: 'R', // too short
+      name: 'R',
       email: 'not-an-email',
-      phone: '12', // too short
-      user_type: 'Other', // invalid
-      category: 'Unknown', // invalid
-      message: 'Hi', // too short
+      phone: '12',
+      user_type: 'Other',
+      category: 'Unknown',
+      message: 'Hi',
     };
 
     const parsed = clientInquirySchema.safeParse(invalid);

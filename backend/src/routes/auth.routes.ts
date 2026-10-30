@@ -7,10 +7,6 @@ import { loginSchema } from '../validators/auth.validator';
 
 const authRouter = Router();
 
-/**
- * POST /api/auth/login
- * Authenticates an admin using email & password (bcrypt + custom JWT).
- */
 authRouter.post(
   '/login',
   authLoginLimiter,
@@ -18,10 +14,6 @@ authRouter.post(
   (req, res, next) => authController.login(req, res, next)
 );
 
-/**
- * GET /api/auth/me
- * Returns the currently authenticated admin profile.
- */
 authRouter.get(
   '/me',
   requireAdminAuth,

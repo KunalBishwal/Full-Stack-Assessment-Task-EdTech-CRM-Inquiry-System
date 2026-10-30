@@ -12,10 +12,6 @@ import {
 
 const inquiryRouter = Router();
 
-/**
- * POST /api/inquiries
- * Public endpoint: Submit a new inquiry without authentication.
- */
 inquiryRouter.post(
   '/',
   publicInquiryLimiter,
@@ -23,10 +19,6 @@ inquiryRouter.post(
   (req, res, next) => inquiryController.create(req, res, next)
 );
 
-/**
- * GET /api/inquiries
- * Protected Admin endpoint: List inquiries with server-side search, filters, and pagination.
- */
 inquiryRouter.get(
   '/',
   requireAdminAuth,
@@ -34,10 +26,6 @@ inquiryRouter.get(
   (req, res, next) => inquiryController.list(req, res, next)
 );
 
-/**
- * GET /api/inquiries/:id
- * Protected Admin endpoint: Get a single inquiry by ID.
- */
 inquiryRouter.get(
   '/:id',
   requireAdminAuth,
@@ -45,10 +33,6 @@ inquiryRouter.get(
   (req, res, next) => inquiryController.getById(req, res, next)
 );
 
-/**
- * PATCH /api/inquiries/:id/status
- * Protected Admin endpoint: Update inquiry status (New, Contacted, In Progress, Resolved).
- */
 inquiryRouter.patch(
   '/:id/status',
   requireAdminAuth,

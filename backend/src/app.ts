@@ -9,13 +9,9 @@ import { globalErrorHandler, notFoundHandler } from './middleware/error.middlewa
 export function createApp() {
   const app = express();
 
-  // Trust proxy for Render / reverse proxy accurate IP rate limiting
   app.set('trust proxy', 1);
-
-  // Security headers
   app.use(helmet());
 
-  // CORS configuration supporting single or comma-separated allowed origins (stripping trailing slashes)
   const allowedOrigins = env.CORS_ORIGIN.split(',')
     .map((origin) => origin.trim().replace(/\/+$/, ''))
     .filter(Boolean);
@@ -30,7 +26,6 @@ export function createApp() {
 
         const normalized = origin.trim().replace(/\/+$/, '');
 
-        // Allow wildcard or explicit origin match (ignoring trailing slash differences)
         if (
           allowedOrigins.includes('*') ||
           allowedOrigins.includes(normalized) ||
@@ -40,7 +35,6 @@ export function createApp() {
           return;
         }
 
-        // Automatically allow any Vercel app domain or local development ports
         if (
           normalized.endsWith('.vercel.app') ||
           /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(normalized)
@@ -57,14 +51,10 @@ export function createApp() {
     })
   );
 
-  // Request body parsing
   app.use(express.json({ limit: '64kb' }));
   app.use(express.urlencoded({ extended: true, limit: '64kb' }));
-
-  // General API rate limit
   app.use('/api', generalApiLimiter);
 
-  // Root health & status indicator
   app.get('/', (_req, res) => {
     res.status(200).json({
       success: true,
@@ -76,10 +66,7 @@ export function createApp() {
     });
   });
 
-  // Mount API routes
   app.use('/api', apiRouter);
-
-  // 404 & centralized error handlers
   app.use(notFoundHandler);
   app.use(globalErrorHandler);
 

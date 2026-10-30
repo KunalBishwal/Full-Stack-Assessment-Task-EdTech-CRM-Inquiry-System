@@ -184,7 +184,6 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ selectedCategory = '' 
         </div>
       )}
 
-      {/* User Type & Category Dropdowns (Explicitly required as dropdowns in the assessment) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
           <label htmlFor="inquiry-user-type" className="block text-sm font-medium text-ink">
@@ -233,7 +232,6 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ selectedCategory = '' 
         </div>
       </div>
 
-      {/* Personal Details: Name */}
       <div className="space-y-1.5">
         <label htmlFor="inquiry-name" className="block text-sm font-medium text-ink">
           Full Name <span className="text-red-600">*</span>
@@ -248,7 +246,6 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ selectedCategory = '' 
         {errors.name && <p className="text-xs text-red-600">{errors.name.message}</p>}
       </div>
 
-      {/* Personal Details: Email & Phone Number */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
           <label htmlFor="inquiry-email" className="block text-sm font-medium text-ink">
@@ -279,7 +276,6 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ selectedCategory = '' 
         </div>
       </div>
 
-      {/* Message / Query */}
       <div className="space-y-1.5">
         <label htmlFor="inquiry-message" className="block text-sm font-medium text-ink">
           Message / Query <span className="text-red-600">*</span>

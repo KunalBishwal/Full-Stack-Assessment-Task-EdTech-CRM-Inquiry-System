@@ -7,7 +7,6 @@ const isSslEnabled =
   env.DATABASE_URL.includes('supabase.com') ||
   env.DATABASE_URL.includes('sslmode=require');
 
-// Strip sslmode from URL query string so pg-connection-string doesn't override rejectUnauthorized
 const cleanConnectionString = env.DATABASE_URL.replace(/([?&])sslmode=[^&]+(&|$)/, '$1').replace(/[?&]$/, '');
 
 export const pool = new Pool({

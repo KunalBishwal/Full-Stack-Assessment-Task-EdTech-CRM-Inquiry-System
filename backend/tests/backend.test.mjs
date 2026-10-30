@@ -17,10 +17,7 @@ describe('K12 Hunar Backend Integration Test Suite (Supabase PostgreSQL & Expres
   };
 
   before(async () => {
-    // 1. Verify Supabase DB connection
     await verifyDatabaseConnection();
-
-    // 2. Start test Express server on an ephemeral port
     const app = createApp();
     await new Promise((resolve) => {
       server = app.listen(0, '127.0.0.1', () => {
@@ -83,9 +80,9 @@ describe('K12 Hunar Backend Integration Test Suite (Supabase PostgreSQL & Expres
 
   test('4. Reject invalid inquiry payload with 400 Bad Request', async () => {
     const invalidPayload = {
-      name: 'A', // too short
+      name: 'A',
       email: 'invalid-email',
-      phone: '123', // too short
+      phone: '123',
       user_type: 'InvalidType',
       category: 'NonExistent',
       message: 'short',

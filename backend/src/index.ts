@@ -12,7 +12,6 @@ async function bootstrap() {
       console.log(`🚀 K12 Hunar Backend listening on port ${env.PORT} (${env.NODE_ENV})`);
     });
 
-    // Keep-alive interval: pings database and external URL every 10 minutes
     const keepAliveUrl = process.env.RENDER_EXTERNAL_URL || process.env.KEEP_ALIVE_URL;
     const keepAliveInterval = setInterval(async () => {
       try {
@@ -22,7 +21,6 @@ async function bootstrap() {
           await fetch(target).catch(() => {});
         }
       } catch {
-        // Silently ignore ping errors
       }
     }, 10 * 60 * 1000);
     keepAliveInterval.unref();

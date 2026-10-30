@@ -34,7 +34,6 @@ const STATUSES: InquiryStatus[] = ['New', 'Contacted', 'In Progress', 'Resolved'
 export const AdminDashboardPage: React.FC = () => {
   const { admin, logout } = useAuth();
 
-  // Filter & pagination state
   const [searchInput, setSearchInput] = useState('');
   const debouncedSearch = useDebounce(searchInput, 300);
   const [categoryFilter, setCategoryFilter] = useState<InquiryCategory | ''>('');
@@ -43,7 +42,6 @@ export const AdminDashboardPage: React.FC = () => {
   const [page, setPage] = useState(1);
   const limit = 10;
 
-  // Data state
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [totalItems, setTotalItems] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
@@ -86,7 +84,6 @@ export const AdminDashboardPage: React.FC = () => {
     void fetchInquiries();
   }, [fetchInquiries]);
 
-  // Reset to page 1 when search or filters change
   useEffect(() => {
     setPage(1);
   }, [debouncedSearch, categoryFilter, userTypeFilter, statusFilter]);
@@ -116,7 +113,6 @@ export const AdminDashboardPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-canvas flex">
-      {/* Compact Sidebar */}
       <aside className="hidden lg:flex lg:w-64 lg:flex-col bg-white border-r border-canvas-border justify-between shrink-0">
         <div className="p-5 space-y-6">
           <div className="flex items-center gap-3 pb-4 border-b border-canvas-border">
@@ -133,7 +129,6 @@ export const AdminDashboardPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Status Filter Navigation */}
           <div className="space-y-1">
             <p className="px-2.5 text-xs font-semibold text-ink-muted mb-2">
               Inquiries by Status
@@ -210,7 +205,6 @@ export const AdminDashboardPage: React.FC = () => {
             </button>
           </div>
 
-          {/* Quick Category Filter */}
           <div className="space-y-1 pt-4 border-t border-canvas-border">
             <p className="px-2.5 text-xs font-semibold text-ink-muted mb-2">
               Categories
@@ -233,7 +227,6 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Admin Profile & Logout */}
         <div className="p-4 border-t border-canvas-border bg-canvas-subtle/60 space-y-3">
           <div className="text-xs">
             <span className="text-ink-muted block">Signed in as</span>
@@ -262,9 +255,7 @@ export const AdminDashboardPage: React.FC = () => {
         </div>
       </aside>
 
-      {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Header */}
         <header className="h-16 bg-white border-b border-canvas-border px-4 sm:px-8 flex items-center justify-between gap-4">
           <div>
             <h1 className="font-serif text-xl font-semibold text-ink">
@@ -305,7 +296,6 @@ export const AdminDashboardPage: React.FC = () => {
         </header>
 
         <main className="flex-1 p-4 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">
-          {/* Overview Metrics */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
             <div className="bg-white border border-canvas-border rounded-lg p-4">
               <span className="text-xs font-medium text-ink-muted">Total Inquiries</span>
@@ -337,10 +327,8 @@ export const AdminDashboardPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Search & Filters Bar */}
           <div className="bg-white border border-canvas-border rounded-lg p-4 shadow-editorial space-y-3">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
-              {/* Search by Name or Phone */}
               <div className="md:col-span-5 relative">
                 <Search className="w-4 h-4 text-ink-muted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
@@ -353,7 +341,6 @@ export const AdminDashboardPage: React.FC = () => {
                 />
               </div>
 
-              {/* Filter by Category */}
               <div className="md:col-span-3">
                 <select
                   value={categoryFilter}
@@ -370,7 +357,6 @@ export const AdminDashboardPage: React.FC = () => {
                 </select>
               </div>
 
-              {/* Filter by User Type */}
               <div className="md:col-span-2">
                 <select
                   value={userTypeFilter}
@@ -387,7 +373,6 @@ export const AdminDashboardPage: React.FC = () => {
                 </select>
               </div>
 
-              {/* Filter by Status */}
               <div className="md:col-span-2">
                 <select
                   value={statusFilter}
@@ -422,7 +407,6 @@ export const AdminDashboardPage: React.FC = () => {
             )}
           </div>
 
-          {/* Error Banner with Retry */}
           {error && (
             <div
               role="alert"
@@ -442,7 +426,6 @@ export const AdminDashboardPage: React.FC = () => {
             </div>
           )}
 
-          {/* Tabular View: Name, Phone, Email, User Type, Category, Date, Status */}
           <div className="bg-white border border-canvas-border rounded-lg shadow-editorial overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
@@ -569,7 +552,6 @@ export const AdminDashboardPage: React.FC = () => {
         </main>
       </div>
 
-      {/* Inquiry Details & Status Modal */}
       <InquiryDetailModal
         inquiry={selectedInquiry}
         onClose={() => setSelectedInquiry(null)}

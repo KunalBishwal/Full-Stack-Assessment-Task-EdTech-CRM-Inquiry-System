@@ -57,10 +57,8 @@ export const LandingPage: React.FC = () => {
       <Navbar />
 
       <main className="flex-1">
-        {/* Main Hero & Integrated Inquiry Form */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            {/* Left Column: Authentic, Clear Product Context */}
             <div className="lg:col-span-6 space-y-8">
               <div className="space-y-4">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-canvas-subtle text-ink-secondary border border-canvas-border">
@@ -76,7 +74,6 @@ export const LandingPage: React.FC = () => {
                 </p>
               </div>
 
-              {/* Who Can Submit Section */}
               <div className="bg-white border border-canvas-border rounded-lg p-5 sm:p-6 shadow-editorial space-y-4">
                 <h2 className="font-serif text-lg font-semibold text-ink">
                   Who Can Submit an Inquiry
@@ -117,7 +114,6 @@ export const LandingPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Inquiry Categories Overview */}
               <div id="categories" className="space-y-3 pt-2">
                 <div className="flex items-center justify-between">
                   <h2 className="font-serif text-lg font-semibold text-ink">
@@ -159,7 +155,6 @@ export const LandingPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Column: Public Inquiry Form */}
             <div id="inquiry-form" className="lg:col-span-6">
               <InquiryForm selectedCategory={preselectedCategory} />
             </div>

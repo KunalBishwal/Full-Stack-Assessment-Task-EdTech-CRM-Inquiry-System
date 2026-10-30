@@ -76,7 +76,6 @@ export class InquiryRepository {
 
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
-    // 1. Count matching rows
     const countSql = `
       SELECT COUNT(*)::int AS total
       FROM inquiries
@@ -85,7 +84,6 @@ export class InquiryRepository {
     const countResult = await dbQuery<{ total: number }>(countSql, params);
     const total = countResult.rows[0]?.total ?? 0;
 
-    // 2. Fetch paginated rows ordered newest first
     const offset = (query.page - 1) * query.limit;
     const dataParams = [...params, query.limit, offset];
     const limitIdx = params.length + 1;
@@ -100,7 +98,6 @@ export class InquiryRepository {
     `;
     const dataResult = await dbQuery<InquiryRecord>(dataSql, dataParams);
 
-    // 3. Compute overall status breakdown counts for the dashboard overview
     const summarySql = `
       SELECT
         COUNT(*)::int AS total,

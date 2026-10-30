@@ -3,13 +3,6 @@ import { env } from '../config/env';
 import { pool, verifyDatabaseConnection } from '../config/database';
 import { adminRepository } from '../repositories/admin.repository';
 
-/**
- * CLI Admin Provisioning Script
- * Usage:
- *   npm run provision:admin -- admin@k12hunar.edu.in StrongPassword123!
- * Or via environment variables:
- *   INITIAL_ADMIN_EMAIL and INITIAL_ADMIN_PASSWORD in backend/.env
- */
 async function provisionAdmin() {
   const cliEmail = process.argv[2];
   const cliPassword = process.argv[3];
