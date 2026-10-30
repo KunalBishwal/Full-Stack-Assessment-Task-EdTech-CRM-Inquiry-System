@@ -17,7 +17,6 @@
   }
 }
 
-/* Subtle custom scrollbar for CRM table and drawers */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

@@ -195,7 +195,6 @@ describe('K12 Hunar Backend Integration Test Suite (Supabase PostgreSQL & Expres
   test('12. Update inquiry status persistently (PATCH /api/inquiries/:id/status)', async () => {
     assert.ok(createdInquiryId, 'A valid inquiry ID must exist');
 
-    // Update status to 'Contacted'
     const res1 = await fetch(`${baseUrl}/inquiries/${createdInquiryId}/status`, {
       method: 'PATCH',
       headers: {
@@ -210,7 +209,6 @@ describe('K12 Hunar Backend Integration Test Suite (Supabase PostgreSQL & Expres
     assert.equal(body1.success, true);
     assert.equal(body1.data.inquiry.status, 'Contacted');
 
-    // Verify persistence via GET /api/inquiries/:id
     const res2 = await fetch(`${baseUrl}/inquiries/${createdInquiryId}`, {
       headers: { Authorization: `Bearer ${authToken}` },
     });
@@ -219,7 +217,6 @@ describe('K12 Hunar Backend Integration Test Suite (Supabase PostgreSQL & Expres
     const body2 = await res2.json();
     assert.equal(body2.data.inquiry.status, 'Contacted');
 
-    // Update status to 'Resolved'
     const res3 = await fetch(`${baseUrl}/inquiries/${createdInquiryId}/status`, {
       method: 'PATCH',
       headers: {

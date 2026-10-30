@@ -1,8 +1,8 @@
 import rateLimit from 'express-rate-limit';
 
 export const publicInquiryLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20, // Limit each IP to 20 inquiry submissions per 15 minutes
+  windowMs: 15 * 60 * 1000,
+  max: 20,
   standardHeaders: true,
   legacyHeaders: false,
   skip: () => process.env.NODE_ENV === 'test',
@@ -13,8 +13,8 @@ export const publicInquiryLimiter = rateLimit({
 });
 
 export const authLoginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 15, // Limit each IP to 15 login attempts per 15 minutes
+  windowMs: 15 * 60 * 1000,
+  max: 15,
   standardHeaders: true,
   legacyHeaders: false,
   skip: () => process.env.NODE_ENV === 'test',
@@ -25,7 +25,7 @@ export const authLoginLimiter = rateLimit({
 });
 
 export const generalApiLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
+  windowMs: 1 * 60 * 1000,
   max: 120,
   standardHeaders: true,
   legacyHeaders: false,
