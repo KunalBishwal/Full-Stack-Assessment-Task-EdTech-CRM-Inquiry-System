@@ -8,6 +8,16 @@
 
 A complete, production-ready full-stack CRM inquiry management system built for **K12 Hunar**, strictly compliant with all assessment guidelines.
 
+> 🚀 **Live Deployment Links (Ready for Evaluation)**:
+> - **Public Inquiry Portal (Frontend)**: [https://full-stack-assessment-task-ed-tech.vercel.app](https://full-stack-assessment-task-ed-tech.vercel.app)
+> - **Admin CRM Login**: [https://full-stack-assessment-task-ed-tech.vercel.app/admin/login](https://full-stack-assessment-task-ed-tech.vercel.app/admin/login)
+> - **Backend API Service**: [https://k12-hunar-backend-487b.onrender.com](https://k12-hunar-backend-487b.onrender.com)
+> - **Live Health & DB Check**: [https://k12-hunar-backend-487b.onrender.com/api/health](https://k12-hunar-backend-487b.onrender.com/api/health)
+>
+> 🔑 **Default Admin Credentials**:
+> - **Email**: `admin@k12hunar.edu.in`
+> - **Password**: `HunarAdmin#2026`
+
 ---
 
 ## 1. Assessment Objectives & Implementation
@@ -64,6 +74,7 @@ A clean full-stack CRM inquiry system where anyone can submit a public inquiry f
 | **Environment Sample File** | [`.env.example`](./.env.example), [`backend/.env.example`](./backend/.env.example), [`frontend/.env.example`](./frontend/.env.example) | ✅ Complete |
 | **Setup & JWT Auth Instructions** | Detailed step-by-step local setup, admin provisioning, and testing guide below | ✅ Complete |
 | **Deployment Configuration** | [`backend/render.yaml`](./backend/render.yaml) (Render) & [`frontend/vercel.json`](./frontend/vercel.json) (Vercel) | ✅ Complete |
+| **Live Demo Links** | [Frontend on Vercel](https://full-stack-assessment-task-ed-tech.vercel.app) & [Backend on Render](https://k12-hunar-backend-487b.onrender.com) | ✅ Live & Operational |
 
 ---
 
