@@ -15,23 +15,40 @@ export function createApp() {
   // Security headers
   app.use(helmet());
 
-  // CORS configuration supporting single or comma-separated allowed origins
-  const allowedOrigins = env.CORS_ORIGIN.split(',').map((origin) => origin.trim());
+  // CORS configuration supporting single or comma-separated allowed origins (stripping trailing slashes)
+  const allowedOrigins = env.CORS_ORIGIN.split(',')
+    .map((origin) => origin.trim().replace(/\/+$/, ''))
+    .filter(Boolean);
+
   app.use(
     cors({
       origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+        if (!origin) {
           callback(null, true);
           return;
         }
-        // In local development, allow localhost and 127.0.0.1 on any port
+
+        const normalized = origin.trim().replace(/\/+$/, '');
+
+        // Allow wildcard or explicit origin match (ignoring trailing slash differences)
         if (
-          env.NODE_ENV !== 'production' &&
-          /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+          allowedOrigins.includes('*') ||
+          allowedOrigins.includes(normalized) ||
+          allowedOrigins.some((ao) => ao === normalized)
         ) {
           callback(null, true);
           return;
         }
+
+        // Automatically allow any Vercel app domain or local development ports
+        if (
+          normalized.endsWith('.vercel.app') ||
+          /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(normalized)
+        ) {
+          callback(null, true);
+          return;
+        }
+
         callback(null, false);
       },
       credentials: true,
